@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Müşteri</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Musteri Ekle" (click)="MusteriEkle()">add</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    
+    <ng-container matColumnDef="musteriAd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.musteriAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="musteriSoyad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Soyad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.musteriSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="musteriTelefon">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Telefon
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.musteriTelefon}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="musteriAdres">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Adres
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.musteriAdres}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Müşteri'nin kiraladığı Araçlar" [routerLink]="['/kiramusteriliste', kayit.musteriId]">article</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Müşteri Düzenle" (click)="MusteriDuzenle(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Müşteri Sil"(click)="MusteriSil(kayit)">delete</mat-icon>
+        </button>
+        
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

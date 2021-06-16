@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AracKiralamDBModelStoreContainer" CdmEntityContainer="AracKiralamDBEntities">
+    <EntitySetMapping Name="Arac">
+      <EntityTypeMapping TypeName="AracKiralamDBModel.Arac">
+        <MappingFragment StoreEntitySet="Arac">
+          <ScalarProperty Name="aracKiralayanId" ColumnName="aracKiralayanId" />
+          <ScalarProperty Name="aracMarka" ColumnName="aracMarka" />
+          <ScalarProperty Name="aracKiraUcret" ColumnName="aracKiraUcret" />
+          <ScalarProperty Name="aracRenk" ColumnName="aracRenk" />
+          <ScalarProperty Name="aracPlaka" ColumnName="aracPlaka" />
+          <ScalarProperty Name="aracId" ColumnName="aracId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kira">
+      <EntityTypeMapping TypeName="AracKiralamDBModel.Kira">
+        <MappingFragment StoreEntitySet="Kira">
+          <ScalarProperty Name="kiraAracPlaka" ColumnName="kiraAracPlaka" />
+          <ScalarProperty Name="kiraBitis" ColumnName="kiraBitis" />
+          <ScalarProperty Name="kiraBaslangic" ColumnName="kiraBaslangic" />
+          <ScalarProperty Name="kiraMusteriId" ColumnName="kiraMusteriId" />
+          <ScalarProperty Name="kiraAracId" ColumnName="kiraAracId" />
+          <ScalarProperty Name="kiraId" ColumnName="kiraId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kiralayan">
+      <EntityTypeMapping TypeName="AracKiralamDBModel.Kiralayan">
+        <MappingFragment StoreEntitySet="Kiralayan">
+          <ScalarProperty Name="kiralayanSoyad" ColumnName="kiralayanSoyad" />
+          <ScalarProperty Name="kiralayanAd" ColumnName="kiralayanAd" />
+          <ScalarProperty Name="kiralayanAdres" ColumnName="kiralayanAdres" />
+          <ScalarProperty Name="kiralayanTelefon" ColumnName="kiralayanTelefon" />
+          <ScalarProperty Name="kiralayanId" ColumnName="kiralayanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="AracKiralamDBModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="musteriTelefon" ColumnName="musteriTelefon" />
+          <ScalarProperty Name="musteriAdres" ColumnName="musteriAdres" />
+          <ScalarProperty Name="musteriSoyad" ColumnName="musteriSoyad" />
+          <ScalarProperty Name="musteriAd" ColumnName="musteriAd" />
+          <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

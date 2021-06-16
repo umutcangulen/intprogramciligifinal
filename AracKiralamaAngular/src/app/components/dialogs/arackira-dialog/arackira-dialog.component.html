@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Araç Plaka</mat-label>
+      <mat-select placeholder="Kiralanan Araç Seçiniz" formControlName="kiraAracId"  name="kiraAracId"  (selectionChange)="AracSec($event.value)">
+        <mat-option [value]="arac.aracId" *ngFor="let arac of arac"> {{arac.aracPlaka}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Müşteri Adı</mat-label>
+      <mat-select placeholder="Kiralayan Müşteriyi Seçiniz" formControlName="kiraMusteriId" name="kiraMusteriId" (selectionChange)="MusteriSec($event.value)">
+        <mat-option [value]="musteri.musteriId" *ngFor="let musteri of musteri"> {{musteri.musteriAd}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Kiranın Başlangıç Tarihi</mat-label>
+      <input matInput placeholder="kiraBaslangic" formControlName="kiraBaslangic" name="kiraBaslangic" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kiranın Bitiş Tarihi</mat-label>
+      <input matInput placeholder="kiraBitis" formControlName="kiraBitis" name="kiraBitis" required type="text">
+    </mat-form-field>
+    
+  </form>
+
+  <button mat-raised-button color="primary" [disabled]="frm.invalid"
+    (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+</div>

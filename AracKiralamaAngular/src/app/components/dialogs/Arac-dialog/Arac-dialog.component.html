@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <span>{{dialogBaslik}}</span>
+</mat-toolbar>
+<div class="container">
+  <form [formGroup]="frm">
+    <mat-form-field appearance="outline">
+      <mat-label>Plaka</mat-label>
+      <input matInput placeholder="aracPlaka" formControlName="aracPlaka" name="aracPlaka" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Renk</mat-label>
+      <input matInput placeholder="aracRenk" formControlName="aracRenk" name="aracRenk" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Kira Ücreti</mat-label>
+      <input matInput placeholder="aracKiraUcret" formControlName="aracKiraUcret" name="aracKiraUcret" required type="number">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Marka</mat-label>
+      <input matInput placeholder="aracMarka" formControlName="aracMarka" name="aracMarka" required type="text">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Yetkili</mat-label>
+      <mat-select placeholder="Kiralayan Kişiyi Seçiniz" formControlName="aracKiralayanId" name="aracKiralayanId" (selectionChange)="KiralayanSec($event.value)">
+        <mat-option [value]="kiralayan.kiralayanId" *ngFor="let kiralayan of kiralayan"> {{kiralayan.kiralayanAd}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button color="primary" [disabled]="frm.invalid"
+    (click)="dialogRef.close(frm.value)">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="dialogRef.close()">İptal</button>
+</div>

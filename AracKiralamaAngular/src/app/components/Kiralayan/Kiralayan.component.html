@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Yetkili</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Yetkili Ekle" (click)="KiralayanEkle()">add</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    
+    <ng-container matColumnDef="kiralayanAd">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiralayanAd}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiralayanSoyad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Soyad
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiralayanSoyad}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiralayanTelefon">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Telefon
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiralayanTelefon}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiralayanAdres">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Adres
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiralayanAdres}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Yetkili Düzenle" (click)="KiralayanDuzenle(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Yetkili Sil"(click)="KiralayanSil(kayit)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

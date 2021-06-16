@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>KİRALAR</h1>
+
+  <h4>LÜTFEN SADECE EKLEME YAPINIZ</h4>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Musteri Ekle" (click)="KiraEkle()">add</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    
+    <ng-container matColumnDef="kiraAracId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ARAÇ ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraAracId}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="kiraMusteriId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> MÜŞTERİ ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraMusteriId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiraBaslangic">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> BAŞLANGIÇ TARİHİ
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraBaslangic}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiraBitis">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> BİTİŞ TARİHİ
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraBitis}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Müşteri Sil"(click)="KiraSil(kayit)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

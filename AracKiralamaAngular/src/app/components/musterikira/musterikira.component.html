@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Aracın Kiraları Liste</h1>
+  <h3><b>Müşteri Adı : </b>{{secMusteri.musteriAd}} </h3>
+  <h3><b>Müşteri Adı : </b>{{secMusteri.musteriSoyad}} </h3>
+  <button mat-fab color="primary" matTooltip="Geri Git" [routerLink]="['/musteri']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>  
+  </button>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="kiraAracId">
+      <mat-header-cell *matHeaderCellDef> Araç Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.aracBilgi.aracPlaka}} </mat-cell>
+    </ng-container> 
+    <ng-container matColumnDef="kiraMusteriId">
+      <mat-header-cell *matHeaderCellDef> Müşteri Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.musteriBilgi.musteriAd}}  {{kayit.musteriBilgi.musteriSoyad}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiraBaslangic">
+      <mat-header-cell *matHeaderCellDef> Başlangıç Tarihi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraBaslangic}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="kiraBitis">
+      <mat-header-cell *matHeaderCellDef> Bitiş Tarihi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.kiraBitis}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button matTooltip="Kira Sil" (click)="KiraSil(kayit)">
+          <mat-icon aria-label="label" color="warn">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

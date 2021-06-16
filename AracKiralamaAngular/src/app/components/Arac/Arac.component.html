@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Araçlar</h1>
+  <button mat-fab color="primary">
+    <mat-icon aria-label="label" matTooltip="Araç Ekle" (click)="AracEkle()">add</mat-icon>
+  </button>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    
+    <ng-container matColumnDef="aracPlaka">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Plaka
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.aracPlaka}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="aracRenk">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Renk
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.aracRenk}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="aracKiraUcret">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Kira Ücreti
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.aracKiraUcret}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="aracMarka">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Marka
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.aracMarka}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Aracın Kiraları" [routerLink]="['/kiraaracliste',kayit.aracId]">article</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Araç Düzenle" (click)="AracDuzenle(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Araç Sil"(click)="AracSil(kayit)">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

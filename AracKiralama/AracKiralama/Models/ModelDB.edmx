@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AracKiralamDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arac">
+          <Key>
+            <PropertyRef Name="aracId" />
+          </Key>
+          <Property Name="aracId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aracPlaka" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="aracRenk" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="aracKiraUcret" Type="int" Nullable="false" />
+          <Property Name="aracMarka" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="aracKiralayanId" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kira">
+          <Key>
+            <PropertyRef Name="kiraId" />
+          </Key>
+          <Property Name="kiraId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiraAracId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiraMusteriId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiraBaslangic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiraBitis" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiraAracPlaka" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kiralayan">
+          <Key>
+            <PropertyRef Name="kiralayanId" />
+          </Key>
+          <Property Name="kiralayanId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiralayanTelefon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiralayanAdres" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiralayanAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kiralayanSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriId" />
+          </Key>
+          <Property Name="musteriId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriAdres" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="musteriTelefon" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Arac_ToKiralayan">
+          <End Role="Kiralayan" Type="Self.Kiralayan" Multiplicity="1" />
+          <End Role="Arac" Type="Self.Arac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kiralayan">
+              <PropertyRef Name="kiralayanId" />
+            </Principal>
+            <Dependent Role="Arac">
+              <PropertyRef Name="aracKiralayanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kira_ToArac">
+          <End Role="Arac" Type="Self.Arac" Multiplicity="1" />
+          <End Role="Kira" Type="Self.Kira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracId" />
+            </Principal>
+            <Dependent Role="Kira">
+              <PropertyRef Name="kiraAracId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kira_ToMusteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Kira" Type="Self.Kira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriId" />
+            </Principal>
+            <Dependent Role="Kira">
+              <PropertyRef Name="kiraMusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AracKiralamDBModelStoreContainer">
+          <EntitySet Name="Arac" EntityType="Self.Arac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kira" EntityType="Self.Kira" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kiralayan" EntityType="Self.Kiralayan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Arac_ToKiralayan" Association="Self.FK_Arac_ToKiralayan">
+            <End Role="Kiralayan" EntitySet="Kiralayan" />
+            <End Role="Arac" EntitySet="Arac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kira_ToArac" Association="Self.FK_Kira_ToArac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="Kira" EntitySet="Kira" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kira_ToMusteri" Association="Self.FK_Kira_ToMusteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kira" EntitySet="Kira" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AracKiralamDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AracKiralamDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arac" EntityType="AracKiralamDBModel.Arac" />
+          <EntitySet Name="Kira" EntityType="AracKiralamDBModel.Kira" />
+          <EntitySet Name="Kiralayan" EntityType="AracKiralamDBModel.Kiralayan" />
+          <EntitySet Name="Musteri" EntityType="AracKiralamDBModel.Musteri" />
+          <AssociationSet Name="FK_Arac_ToKiralayan" Association="AracKiralamDBModel.FK_Arac_ToKiralayan">
+            <End Role="Kiralayan" EntitySet="Kiralayan" />
+            <End Role="Arac" EntitySet="Arac" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kira_ToArac" Association="AracKiralamDBModel.FK_Kira_ToArac">
+            <End Role="Arac" EntitySet="Arac" />
+            <End Role="Kira" EntitySet="Kira" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kira_ToMusteri" Association="AracKiralamDBModel.FK_Kira_ToMusteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kira" EntitySet="Kira" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Arac">
+          <Key>
+            <PropertyRef Name="aracId" />
+          </Key>
+          <Property Name="aracId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aracPlaka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="aracRenk" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="aracKiraUcret" Type="Int32" Nullable="false" />
+          <Property Name="aracMarka" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="aracKiralayanId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kiralayan" Relationship="AracKiralamDBModel.FK_Arac_ToKiralayan" FromRole="Arac" ToRole="Kiralayan" />
+          <NavigationProperty Name="Kira" Relationship="AracKiralamDBModel.FK_Kira_ToArac" FromRole="Arac" ToRole="Kira" />
+        </EntityType>
+        <EntityType Name="Kira">
+          <Key>
+            <PropertyRef Name="kiraId" />
+          </Key>
+          <Property Name="kiraId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiraAracId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiraMusteriId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiraBaslangic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiraBitis" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Arac" Relationship="AracKiralamDBModel.FK_Kira_ToArac" FromRole="Kira" ToRole="Arac" />
+          <NavigationProperty Name="Musteri" Relationship="AracKiralamDBModel.FK_Kira_ToMusteri" FromRole="Kira" ToRole="Musteri" />
+          <Property Name="kiraAracPlaka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Kiralayan">
+          <Key>
+            <PropertyRef Name="kiralayanId" />
+          </Key>
+          <Property Name="kiralayanId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiralayanTelefon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiralayanAdres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiralayanAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kiralayanSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Arac" Relationship="AracKiralamDBModel.FK_Arac_ToKiralayan" FromRole="Kiralayan" ToRole="Arac" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="musteriId" />
+          </Key>
+          <Property Name="musteriId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriSoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriAdres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="musteriTelefon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kira" Relationship="AracKiralamDBModel.FK_Kira_ToMusteri" FromRole="Musteri" ToRole="Kira" />
+        </EntityType>
+        <Association Name="FK_Arac_ToKiralayan">
+          <End Type="AracKiralamDBModel.Kiralayan" Role="Kiralayan" Multiplicity="1" />
+          <End Type="AracKiralamDBModel.Arac" Role="Arac" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kiralayan">
+              <PropertyRef Name="kiralayanId" />
+            </Principal>
+            <Dependent Role="Arac">
+              <PropertyRef Name="aracKiralayanId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kira_ToArac">
+          <End Type="AracKiralamDBModel.Arac" Role="Arac" Multiplicity="1" />
+          <End Type="AracKiralamDBModel.Kira" Role="Kira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Arac">
+              <PropertyRef Name="aracId" />
+            </Principal>
+            <Dependent Role="Kira">
+              <PropertyRef Name="kiraAracId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kira_ToMusteri">
+          <End Type="AracKiralamDBModel.Musteri" Role="Musteri" Multiplicity="1" />
+          <End Type="AracKiralamDBModel.Kira" Role="Kira" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="musteriId" />
+            </Principal>
+            <Dependent Role="Kira">
+              <PropertyRef Name="kiraMusteriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AracKiralamDBModelStoreContainer" CdmEntityContainer="AracKiralamDBEntities">
+          <EntitySetMapping Name="Arac">
+            <EntityTypeMapping TypeName="AracKiralamDBModel.Arac">
+              <MappingFragment StoreEntitySet="Arac">
+                <ScalarProperty Name="aracKiralayanId" ColumnName="aracKiralayanId" />
+                <ScalarProperty Name="aracMarka" ColumnName="aracMarka" />
+                <ScalarProperty Name="aracKiraUcret" ColumnName="aracKiraUcret" />
+                <ScalarProperty Name="aracRenk" ColumnName="aracRenk" />
+                <ScalarProperty Name="aracPlaka" ColumnName="aracPlaka" />
+                <ScalarProperty Name="aracId" ColumnName="aracId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kira">
+            <EntityTypeMapping TypeName="AracKiralamDBModel.Kira">
+              <MappingFragment StoreEntitySet="Kira">
+                <ScalarProperty Name="kiraAracPlaka" ColumnName="kiraAracPlaka" />
+                <ScalarProperty Name="kiraBitis" ColumnName="kiraBitis" />
+                <ScalarProperty Name="kiraBaslangic" ColumnName="kiraBaslangic" />
+                <ScalarProperty Name="kiraMusteriId" ColumnName="kiraMusteriId" />
+                <ScalarProperty Name="kiraAracId" ColumnName="kiraAracId" />
+                <ScalarProperty Name="kiraId" ColumnName="kiraId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kiralayan">
+            <EntityTypeMapping TypeName="AracKiralamDBModel.Kiralayan">
+              <MappingFragment StoreEntitySet="Kiralayan">
+                <ScalarProperty Name="kiralayanSoyad" ColumnName="kiralayanSoyad" />
+                <ScalarProperty Name="kiralayanAd" ColumnName="kiralayanAd" />
+                <ScalarProperty Name="kiralayanAdres" ColumnName="kiralayanAdres" />
+                <ScalarProperty Name="kiralayanTelefon" ColumnName="kiralayanTelefon" />
+                <ScalarProperty Name="kiralayanId" ColumnName="kiralayanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="AracKiralamDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="musteriTelefon" ColumnName="musteriTelefon" />
+                <ScalarProperty Name="musteriAdres" ColumnName="musteriAdres" />
+                <ScalarProperty Name="musteriSoyad" ColumnName="musteriSoyad" />
+                <ScalarProperty Name="musteriAd" ColumnName="musteriAd" />
+                <ScalarProperty Name="musteriId" ColumnName="musteriId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
